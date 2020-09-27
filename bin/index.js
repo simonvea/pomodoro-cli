@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'uset strict';
 const readline = require('readline');
 
@@ -5,6 +7,8 @@ const MINUTES = 25;
 let start = new Date();
 
 let counter;
+
+const arguments = process.argv.splice(2); // i.e if pomo start, this will give us ["start"]
 
 const rl = readline.createInterface({
   input: process.stdin,
