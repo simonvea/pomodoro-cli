@@ -5,7 +5,7 @@ import readline from 'readline';
 import FSM, { actions } from '../lib/fsm.js';
 import { counter, startCounter, clearSecondsSpent } from '../lib/counter.js';
 
-// const arguments = process.argv.splice(2); // i.e if pomo start, this will give us ["start"]
+const args = process.argv.slice(2);
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -15,7 +15,12 @@ const rl = readline.createInterface({
 FSM.onStateChange(updateConsole);
 FSM.init();
 
+if (args[0] && args[0].toLocaleLowerCase() === 'start') {
+  FSM.update('s');
+}
+
 process.stdin.on('keypress', (character, k) => {
+  clearLine();
   FSM.update(character);
 });
 
@@ -39,38 +44,31 @@ function updateConsole(action) {
       console.clear();
       console.log('Welcome');
       console.log('Press s to start a pomodoro');
-      console.log('press p to pause,');
       console.log('and q to quit at anytime');
       break;
     case actions.END_SESSION:
-      clearLine();
       console.log('Already done?');
       rl.close();
       break;
     case actions.START_POMODORO:
-      clearLine();
       console.log('Starting Pomodoro!');
       clearSecondsSpent();
       startCounter();
       break;
     case actions.CONTINUE_POMODORO:
-      clearLine();
       console.log('Continuing pomodoro');
       startCounter();
       break;
     case actions.PAUSE_POMODORO:
-      clearLine();
       console.log('Pomodoro is paused...');
       console.log('Press s to continue, or');
       console.log('q to quit.');
       break;
     case actions.START_BREAK:
       // TODO: implement a counter.
-      clearLine();
       console.log('You are on a break');
       break;
     default:
-      // Continue with whatever you are doing..
-      clearLine();
+    // Continue with whatever you are doing..
   }
 }
