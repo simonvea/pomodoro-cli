@@ -1,19 +1,27 @@
 {
   "name": "pomodoro-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "A pomodoro counter to be run via the command line",
   "main": "./bin/index.js",
   "bin": {
     "pomo": "./bin/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "type": "module",
   "keywords": [],
-  "author": "",
+  "author": "Simon Opheim",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.3.0",
     "jest": "^26.4.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
   }
 }
