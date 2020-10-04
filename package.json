@@ -23,5 +23,8 @@
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
+  },
+  "dependencies": {
+    "play-sound": "^1.1.3"
   }
 }

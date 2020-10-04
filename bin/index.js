@@ -4,6 +4,7 @@
 import readline from 'readline';
 import { updateCounter, time } from '../lib/counter.js';
 import FSM, { actions } from '../lib/fsm.js';
+import { updateSound } from '../lib/soundEffects.js';
 
 const args = process.argv.slice(2);
 
@@ -75,16 +76,5 @@ function updateConsole(action) {
       break;
     default:
     // Continue with whatever you are doing..
-  }
-}
-
-function updateSound(action) {
-  switch (action) {
-    case actions.ADD_SECOND:
-      // Play sound;
-      break;
-    case 'FINISH_SOUND':
-      // Or something.. Play sound!
-      break;
   }
 }
